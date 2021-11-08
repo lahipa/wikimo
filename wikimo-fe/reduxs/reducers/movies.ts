@@ -1,18 +1,45 @@
-import * as actionTypes from "../actions/movies/actionTypes";
+import ActionTypes from "../actions/movies/actionTypes";
+import { ListMovie, DetailMovie } from "../../services/datatypes"
 
-const initialState = {
+interface MovieReducer {
+  movies: Array<ListMovie>;
+  movie: DetailMovie;
+}
+
+interface GetMoviesAction {
+  type: ActionTypes.GET_MOVIES_SUCCESS;
+  payload: {
+    data: MovieReducer["movies"];
+  };
+}
+
+interface GetMovieAction {
+  type: ActionTypes.GET_MOVIE_SUCCESS;
+  payload: {
+    data: MovieReducer["movie"];
+  };
+}
+
+interface ClearState {
+  type: "CLEAR_MOVIES";
+  payload: MovieReducer;
+}
+
+type MovieAction = ClearState | GetMoviesAction | GetMovieAction;
+
+const initialState: MovieReducer = {
   movies: [],
   movie: {},
 };
 
-const moviesReducer = (state = initialState, action: any) => {
+const moviesReducer = (state: MovieReducer = initialState, action: MovieAction) => {
   switch (action.type) {
-    case actionTypes.GET_MOVIES_SUCCESS:
+    case ActionTypes.GET_MOVIES_SUCCESS:
       return {
         ...state,
         movies: [...state.movies, ...action.payload.data],
       };
-    case actionTypes.GET_MOVIE_SUCCESS:
+    case ActionTypes.GET_MOVIE_SUCCESS:
       return {
         ...state,
         movie: action.payload.data,
@@ -22,7 +49,7 @@ const moviesReducer = (state = initialState, action: any) => {
         ...state,
         movies: [],
         movie: {},
-      }
+      };
     default:
       return state;
   }

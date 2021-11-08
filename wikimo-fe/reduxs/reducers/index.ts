@@ -12,21 +12,23 @@ const appReducer = combineReducers({
   error,
 });
 
-const rootReducer = (state: any, action: any) => {
-  // if (action.type === LOGOUT_SUCCESS) {
-  //   state = undefined;
-  // }
+// const rootReducer = (state: any, action: any) => {
+//   if (action.type === LOGOUT_SUCCESS) {
+//     state = undefined;
+//   }
 
-  // Persist
-  // if (action.type === SIGNOUT_REQUEST) {
-  //   // for all keys defined in your persistConfig(s)
-  //   storage.removeItem("persist:root");
-  //   // storage.removeItem('persist:otherKey')
+//   // Persist
+//   // if (action.type === SIGNOUT_REQUEST) {
+//   //   // for all keys defined in your persistConfig(s)
+//   //   storage.removeItem("persist:root");
+//   //   // storage.removeItem('persist:otherKey')
 
-  //   state = undefined;
-  // }
+//   //   state = undefined;
+//   // }
 
-  return appReducer(state, action);
-};
+//   return appReducer(state, action);
+// };
+
+const rootReducer = appReducer;
 
 export default rootReducer;

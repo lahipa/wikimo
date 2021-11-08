@@ -1,19 +1,20 @@
-import * as actionTypes from "./actionTypes";
+import ActionTypes from "./actionTypes";
 import { getMovies } from "../../../services";
+import { AppDispatch } from "../../store";
 
 export const getMoviesBySearch = (_x: string, keywords: string, page: number) => {
-    return async (dispatch: any) => {
-        dispatch({ type: actionTypes.GET_MOVIES_REQUEST });
+    return async (dispatch: AppDispatch) => {
+        dispatch({ type: ActionTypes.GET_MOVIES_REQUEST });
 
         try {
             const response: any = await getMovies({
                 apikey: _x,
                 s: keywords,
-                page
+                page: page.toString(),
             });
 
             return dispatch ({
-                type: actionTypes.GET_MOVIES_SUCCESS,
+                type: ActionTypes.GET_MOVIES_SUCCESS,
                 payload: {
                     data: response.Search,
                     total: response.totalResults,
@@ -22,7 +23,7 @@ export const getMoviesBySearch = (_x: string, keywords: string, page: number) =>
             });
         } catch (err: any) {
             return dispatch ({
-                type: actionTypes.GET_MOVIES_FAILURE,
+                type: ActionTypes.GET_MOVIES_FAILURE,
                 payload: {
                     data: false,
                     message: err.message,
@@ -33,8 +34,8 @@ export const getMoviesBySearch = (_x: string, keywords: string, page: number) =>
 }
 
 export const getMovieById = (_x: string, id: string) => {
-    return async (dispatch: any) => {
-        dispatch({ type: actionTypes.GET_MOVIE_REQUEST });
+    return async (dispatch: AppDispatch) => {
+        dispatch({ type: ActionTypes.GET_MOVIE_REQUEST });
 
         try {
             const response: any = await getMovies({
@@ -43,7 +44,7 @@ export const getMovieById = (_x: string, id: string) => {
             });
 
             return dispatch ({
-                type: actionTypes.GET_MOVIE_SUCCESS,
+                type: ActionTypes.GET_MOVIE_SUCCESS,
                 payload: {
                     data: response,
                     message: "", 
@@ -51,7 +52,7 @@ export const getMovieById = (_x: string, id: string) => {
             });
         } catch (err: any) {
             return dispatch ({
-                type: actionTypes.GET_MOVIE_FAILURE,
+                type: ActionTypes.GET_MOVIE_FAILURE,
                 payload: {
                     data: false,
                     message: err.message,
