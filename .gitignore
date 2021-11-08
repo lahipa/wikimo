@@ -1,0 +1,38 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+wikimo-fe/node_modules
+wikimo-fe/.pnp
+wikimo-fe/.pnp.js
+
+# testing
+wikimo-fe/coverage
+
+# next.js
+wikimo-fe/.next/
+wikimo-fe/out/
+
+# production
+wikimo-fe/build
+
+# misc
+wikimo-fe/.DS_Store
+wikimo-fe/*.pem
+
+# debug
+wikimo-fe/npm-debug.log*
+wikimo-fe/yarn-debug.log*
+wikimo-fe/yarn-error.log*
+
+# local env files
+wikimo-fe/.env.local
+wikimo-fe/.env.development.local
+wikimo-fe/.env.test.local
+wikimo-fe/.env.production.local
+wikimo-fe/.env
+
+# vercel
+wikimo-fe/.vercel
+
+# typescript
+wikimo-fe/*.tsbuildinfo
